@@ -929,6 +929,8 @@
     #define DRV_REPORT(LABEL, ITEM) do{ SERIAL_ECHOPGM(LABEL); drv_status_loop(ITEM, LOGICAL_AXIS_ARGS()); }while(0)
 
     TMC_REPORT("\t",                 TMC_CODES);
+    #if TMC_VERBOSE
+
     #if HAS_DRIVER(TMC2209)
       TMC_REPORT("Address\t",        TMC_UART_ADDR);
     #endif
@@ -993,6 +995,7 @@
       DRV_REPORT("s2vsa\t",          TMC_S2VSA);
       DRV_REPORT("s2vsb\t",          TMC_S2VSB);
     #endif
+  #endif
     DRV_REPORT("Driver registers:\n",TMC_DRV_STATUS_HEX);
     SERIAL_EOL();
   }
